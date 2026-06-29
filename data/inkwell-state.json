@@ -1,0 +1,16 @@
+{
+  "config": {
+    "genres": [],
+    "dailyTarget": 500,
+    "sessionMinutes": 25
+  },
+  "drafts": [],
+  "sessions": [],
+  "streak": {
+    "current": 0,
+    "longest": 0,
+    "lastSessionDate": null
+  },
+  "lastPromptDate": null,
+  "lastPromptId": null
+}
