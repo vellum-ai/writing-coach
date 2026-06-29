@@ -1,0 +1,5 @@
+node_modules/
+plugins-data/
+*.js
+!jest.config.js
+.DS_Store
