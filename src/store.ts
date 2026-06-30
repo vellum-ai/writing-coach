@@ -1,9 +1,9 @@
 /**
- * Local persistence for Red Pen.
+ * Local persistence for Writing Coach.
  * Stores writer config, draft gallery, writing sessions, and streaks
  * in a JSON file inside the plugin data directory.
  *
- * The plugin data directory is <workspaceDir>/plugins-data/red-pen/.
+ * The plugin data directory is <workspaceDir>/plugins-data/writing-coach/.
  * InitContext provides pluginStorageDir to hooks, but ToolContext does not
  * expose it, so tools derive the path from ctx.workingDir.
  */
@@ -41,7 +41,7 @@ export interface SessionEntry {
   project: string;
 }
 
-export interface RedPenState {
+export interface WritingCoachState {
   config: WriterConfig;
   drafts: DraftEntry[];
   sessions: SessionEntry[];
@@ -58,14 +58,14 @@ export interface RedPenState {
 // Constants
 // ---------------------------------------------------------------------------
 
-const STATE_FILE = "red-pen-state.json";
-const PLUGIN_NAME = "red-pen";
+const STATE_FILE = "writing-coach-state.json";
+const PLUGIN_NAME = "writing-coach";
 
 // ---------------------------------------------------------------------------
 // State management
 // ---------------------------------------------------------------------------
 
-export function defaultState(): RedPenState {
+export function defaultState(): WritingCoachState {
   return {
     config: {
       genres: [],
@@ -91,7 +91,7 @@ function resolveStorageDir(workingDir: string | undefined): string {
 
 export async function loadState(
   workingDir: string | undefined,
-): Promise<RedPenState> {
+): Promise<WritingCoachState> {
   const storageDir = resolveStorageDir(workingDir);
   const filePath = path.join(storageDir, STATE_FILE);
   try {
@@ -105,7 +105,7 @@ export async function loadState(
 
 export async function saveState(
   workingDir: string | undefined,
-  state: RedPenState,
+  state: WritingCoachState,
 ): Promise<void> {
   const storageDir = resolveStorageDir(workingDir);
   await fs.mkdir(storageDir, { recursive: true });
@@ -114,9 +114,9 @@ export async function saveState(
 }
 
 function mergeState(
-  base: RedPenState,
-  incoming: Partial<RedPenState>,
-): RedPenState {
+  base: WritingCoachState,
+  incoming: Partial<WritingCoachState>,
+): WritingCoachState {
   return {
     config: { ...base.config, ...(incoming.config ?? {}) },
     drafts: incoming.drafts ?? base.drafts,
@@ -156,8 +156,8 @@ export function countWords(text: string): number {
  * If more than 1 day gap, reset to 1.
  */
 export function updateStreak(
-  streak: RedPenState["streak"],
-): RedPenState["streak"] {
+  streak: WritingCoachState["streak"],
+): WritingCoachState["streak"] {
   const today = todayStr();
   if (streak.lastSessionDate === today) {
     return streak;
@@ -185,7 +185,7 @@ export function updateStreak(
  * Returns the number of days since the last session, or null if never.
  */
 export function daysSinceLastSession(
-  streak: RedPenState["streak"],
+  streak: WritingCoachState["streak"],
 ): number | null {
   if (!streak.lastSessionDate) return null;
   return daysBetween(streak.lastSessionDate, todayStr());

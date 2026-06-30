@@ -1,4 +1,4 @@
-# Red Pen
+# Writing Coach
 
 A writing coach plugin for Vellum. Four skills, seven tools, zero excuses to skip your daily words.
 
@@ -24,7 +24,7 @@ A writing coach plugin for Vellum. Four skills, seven tools, zero excuses to ski
 ## Install
 
 ```
-assistant plugins install red-pen
+assistant plugins install writing-coach
 ```
 
 Then restart your assistant.
@@ -108,7 +108,7 @@ The first time you use Daily Prompt Forge, your assistant will ask what genre(s)
 
 ## No credentials needed
 
-Everything runs locally. No external APIs, no keys, no OAuth. Your drafts and sessions live in `<workspace>/plugins-data/red-pen/`.
+Everything runs locally. No external APIs, no keys, no OAuth. Your drafts and sessions live in `<workspace>/plugins-data/writing-coach/`.
 
 ## License
 

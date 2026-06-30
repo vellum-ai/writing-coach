@@ -5,11 +5,11 @@ import * as path from "node:path";
 const onInit: PluginHookFn = async (ctx) => {
   const storageDir =
     ctx.pluginStorageDir ??
-    path.join("/workspace", "plugins-data", "red-pen");
+    path.join("/workspace", "plugins-data", "writing-coach");
 
   try {
     await fs.mkdir(storageDir, { recursive: true });
-    const stateFile = path.join(storageDir, "red-pen-state.json");
+    const stateFile = path.join(storageDir, "writing-coach-state.json");
     try {
       await fs.access(stateFile);
     } catch {
@@ -18,12 +18,12 @@ const onInit: PluginHookFn = async (ctx) => {
         JSON.stringify(defaultState(), null, 2),
         "utf8",
       );
-      ctx.logger.info({ storageDir }, "red-pen: initialized new state file");
+      ctx.logger.info({ storageDir }, "writing-coach: initialized new state file");
     }
   } catch (err) {
     ctx.logger.error(
       { err: err instanceof Error ? err.message : String(err) },
-      "red-pen: init failed",
+      "writing-coach: init failed",
     );
   }
 };

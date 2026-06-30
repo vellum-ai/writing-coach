@@ -1,5 +1,5 @@
 {
-  "name": "@vellum-ai/red-pen",
+  "name": "@vellum-ai/writing-coach",
   "version": "0.1.0",
   "description": "A writing coach in your pocket. Daily prompts that escalate with your streak, savage-but-constructive draft roasts, query letter critiques for aspiring novelists, and a word count enforcer that guilt-trips you when you skip.",
   "peerDependencies": {
